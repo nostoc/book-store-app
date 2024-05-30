@@ -75,7 +75,7 @@ const Home = () => {
                     <Link to={`/books/edit/${book._id}`}>
                       <AiOutlineEdit className=" text-yellow-600 text-2xl" />
                     </Link>
-                    <Link to={`/books/details/${book._id}`}>
+                    <Link to={`/books/delete/${book._id}`}>
                       <MdOutlineDelete className=" text-red-600 text-2xl" />
                     </Link>
                   </div>
