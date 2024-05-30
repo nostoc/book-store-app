@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
+import { useSnackbar } from "notistack";
 
 const EditBook = () => {
   const [title, setTitle] = useState("");
@@ -10,6 +11,7 @@ const EditBook = () => {
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
@@ -24,12 +26,13 @@ const EditBook = () => {
       })
       .catch((error) => {
         setLoading(false);
-        alert(
+        /*alert(
           "An error occured. Please Check the console for more information"
-        );
+        );*/
+        enqueueSnackbar("An error occured", { variant: "error" });
         console.error("Error fetching data:", error);
       });
-  }, [id]);
+  }, [enqueueSnackbar, id]);
 
   const handleEditBook = () => {
     const data = {
@@ -43,13 +46,15 @@ const EditBook = () => {
       .then((response) => {
         console.log("Book created", response.data);
         setLoading(false);
+        enqueueSnackbar("Book updated successfully", { variant: "success" });
         navigate("/");
       })
       .catch((error) => {
         setLoading(false);
-        alert(
+        /*alert(
           "An error occured. Please Check the console for more information"
-        );
+        );*/
+        enqueueSnackbar("An error occured", { variant: "error" });
         console.error("Error creating book:", error);
       });
   };
