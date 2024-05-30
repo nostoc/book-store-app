@@ -13,13 +13,15 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/books")
+      .get("http://localhost:5555/books")
       .then((response) => {
+        console.log("Fetched Books", response.data.data) //
         setBooks(response.data.data);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       });
   }, []);

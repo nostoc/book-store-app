@@ -21,7 +21,7 @@ app.use(cors());
 // the better way
 /*app.use(
   cors({
-    origin: "http://localhost:5555/",
+    origin: "http://localhost:5552/",
     methods: ["GET", "PUT", "POST", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
